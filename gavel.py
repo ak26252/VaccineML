@@ -11,7 +11,7 @@ import csv
 # path = r"GAVEL/VRdata.zip"
 file = r"333.csv"
 file_write = r"results.csv"
-directory = r"VRdata"
+directory = r"DataNewRotation"
 
 #line separator
 line = "-"*70
@@ -367,20 +367,20 @@ class vr_data:
                 break
             if ((item == 0) or (ty_list[other_index] == 0) or (tz_list[other_index] == 0)):
                 num_zero += 1
+                other_index += 1
                 # print("numzero:", num_zero)
                 continue
             #ignore 0's and NaN's
-            if (np.isnan(item)) or (np.isnan(ty_list[other_index])) or (np.isnan(tz_list[other_index])) or (other_index == end - 6 - num_zero):
+            if (np.isnan(item)) or (np.isnan(ty_list[other_index])) or (np.isnan(tz_list[other_index])) or (index == end - 6 - num_zero):
                 # print("here")
-                print(scene_total)
+                # print(scene_total)
                 scene_arr[scene] = scene_total
                 # print(scene_total)
                 scene_arr_num[scene] = scene_index
                 scene += 1
                 scene_total = 0.0
-                # other_index += 1
+                other_index += 1
                 scene_index = 0
-                
                 continue
             else:
                 distance = math.sqrt(((temp_tx - item) ** 2) + ((temp_ty - ty_list[other_index]) ** 2) + ((temp_tz - tz_list[other_index]) ** 2))
